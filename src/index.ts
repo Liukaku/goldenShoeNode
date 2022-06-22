@@ -1,5 +1,7 @@
 import * as functions from "firebase-functions";
 import { getProducts } from "./getProducts";
+import { getProductsByTag } from "./getProductsByTag";
+import { updateStock } from "./updateStock";
 const express = require("express");
 const { newProduct } = require("./newProduct");
 const { createProducts } = require("./createProduct");
@@ -31,6 +33,13 @@ app.get("/getProducts", (request: any, response: any) => {
 
 app.get("/getProductCategory", (request: any, response: any) => {
   getProductCategory(request, response);
+});
+app.get("/getProductsByTag", (request: any, response: any) => {
+  getProductsByTag(request, response);
+});
+
+app.post("/updateStock", (request: any, response: any) => {
+  updateStock(request, response);
 });
 
 export const api = functions.region("europe-west2").https.onRequest(app);
